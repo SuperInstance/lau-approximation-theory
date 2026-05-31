@@ -1,14 +1,25 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+//! # lau-approximation-theory
+//!
+//! Approximation theory toolkit: polynomial/spline interpolation, least squares,
+//! Chebyshev polynomials, Padé approximants, Remez algorithm basics, Fourier
+//! truncation, and error analysis — with applications to agent behavior modeling.
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+pub mod interpolation;
+pub mod spline;
+pub mod least_squares;
+pub mod chebyshev;
+pub mod remez;
+pub mod fourier;
+pub mod pade;
+pub mod error_bounds;
+pub mod agent_model;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+pub use interpolation::{lagrange, newton};
+pub use spline::{CubicSpline, SplineBoundary};
+pub use least_squares::{linear_least_squares, polynomial_least_squares};
+pub use chebyshev::{ChebyshevBasis, chebyshev_nodes, chebyshev_roots};
+pub use remez::remez;
+pub use fourier::fourier_truncate;
+pub use pade::pade_approximant;
+pub use error_bounds::{lebesgue_constant, runge_error_estimate};
+pub use agent_model::AgentBehaviorModel;
